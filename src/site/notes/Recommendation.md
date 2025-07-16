@@ -1,10 +1,8 @@
 ---
-{"dg-publish":true,"permalink":"/recommendation/","tags":["gardenEntry"]}
+{"dg-publish":true,"permalink":"/recommendation/"}
 ---
 
-
-Just a bunch of stuff which i would‘ve been loved to show to my younger version.
-
+Just a bunch of stuff I wish I could’ve shown my younger self.
 
 [[NTS Radio\|NTS Radio]]
 
