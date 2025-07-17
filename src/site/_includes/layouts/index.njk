@@ -10,20 +10,24 @@
     {% for imp in dynamics.index.head %}
       {% include imp %}
     {% endfor %}
-    <style>
+      <style>
       /* Стили для верхнего меню */
       .top-menu {
         background-color: var(--background-primary);
         border-bottom: 1px solid var(--background-modifier-border);
         padding: 0 20px;
+        z-index: 100;
       }
       
       .top-menu-container {
-        max-width: 1200px;
-        margin: 0 0 0 15%;
+        margin-left: 16px; /* небольшой отступ от края */
+        margin-right: auto;
         display: flex;
         align-items: center;
-        height: 5%;
+        height: 40px;
+        /* ширина контейнера определяется содержимым */
+        width: fit-content;
+        min-width: 0;
       }
       
       .top-menu-brand {
@@ -38,10 +42,21 @@
         padding: 8px 16px;
         border-radius: 4px;
         transition: background-color 0.2s;
+        white-space: nowrap;
       }
       
       .brand-link:hover {
         background-color: var(--background-modifier-hover);
+      }
+      
+      .top-menu-nav {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        /* ширина определяется кнопками */
+        width: auto;
+        min-width: 0;
       }
       
       .top-menu-item {
@@ -51,6 +66,8 @@
         border-radius: 4px;
         transition: background-color 0.2s, color 0.2s;
         font-weight: 500;
+        white-space: nowrap;
+        flex: 0 1 auto; /* подстраиваются под содержимое */
       }
       
       .top-menu-item:hover {
@@ -62,24 +79,26 @@
         background-color: var(--interactive-accent);
         color: var(--text-on-accent);
       }
-  /* Адаптивность для мобильных устройств */
-  @media (max-width: 768px) {
-    .top-menu-container {
-      margin: 0 0 0 5%;
-      height: auto;
-      padding: 10px 0;
-    }
-    
-    .top-menu-nav {
-      gap: 15px;
-    }
-    
-    .top-menu-item {
-      padding: 6px 12px;
-      font-size: 14px;
-    }
-  }
-</style>
+      /* Адаптивность для мобильных устройств */
+      @media (max-width: 768px) {
+        .top-menu-container {
+          margin-left: 8px;
+          height: auto;
+          padding: 10px 0;
+          width: 100%;
+        }
+        
+        .top-menu-nav {
+          gap: 10px;
+        }
+        
+        .top-menu-item {
+          padding: 6px 12px;
+          font-size: 14px;
+        }
+      }
+    </style>
+
 
   </head>
   <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
