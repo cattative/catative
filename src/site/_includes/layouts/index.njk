@@ -74,19 +74,24 @@
   </head>
   <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
 
-<!-- Верхнее меню с категориями -->
-<nav class="top-menu">
-  <div class="top-menu-container">
-    <div class="top-menu-nav">
-      <a href="/" class="top-menu-item">Главная</a>
-      <a href="/notes" class="top-menu-item">Заметки</a>
-      <a href="/projects" class="top-menu-item">Проекты</a>
-      <a href="/articles" class="top-menu-item">Статьи</a>
-      <a href="/thoughts" class="top-menu-item">Размышления</a>
-      <a href="/resources" class="top-menu-item">Ресурсы</a>
-      <a href="/about" class="top-menu-item">О сайте</a>
-    </div>
-  </div>
+    <!-- Верхнее меню с категориями -->
+    <nav class="top-menu">
+      <div class="top-menu-container">
+        <!-- Кнопка catative's bank слева -->
+        <div class="top-menu-brand">
+          <a href="/" class="brand-link">catative's bank</a>
+        </div>
+        
+        <div class="top-menu-nav">
+          <a href="/{{ 'Главная' | slugify }}" class="top-menu-item">Главная</a>
+          <a href="/{{ 'Заметки' | slugify }}" class="top-menu-item">Заметки</a>
+          <a href="/{{ 'Проекты' | slugify }}" class="top-menu-item">Проекты</a>
+          <a href="/{{ 'Статьи' | slugify }}" class="top-menu-item">Статьи</a>
+          <a href="/{{ 'Размышления' | slugify }}" class="top-menu-item">Размышления</a>
+          <a href="/{{ 'Ресурсы' | slugify }}" class="top-menu-item">Ресурсы</a>
+          <a href="/{{ 'О сайте' | slugify }}" class="top-menu-item">О сайте</a>
+        </div>
+      </div>
 </nav>
 
 {%include "components/notegrowthhistory.njk"%}
