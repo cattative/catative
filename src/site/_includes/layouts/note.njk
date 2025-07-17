@@ -347,26 +347,41 @@
       let currentTrackIndex = 0;
       let isPlaying = false;
       const audio = new Audio();
-      
-      // Initialize player
-      function initPlayer() {
-        // Create playlist items
-        const playlistContainer = document.getElementById('playlist');
-        playlist.forEach((song, index) => {
-          const item = document.createElement('div');
-          item.className = 'playlist-item';
-          item.textContent = `${song.title} - ${song.artist}`;
-          item.onclick = () => playTrack(index);
-          playlistContainer.appendChild(item);
-        });
+audio.addEventListener('error', function(e) {
+    console.error('Error loading audio:', e);
+    console.log('Audio source attempted:', audio.src);
+});
 
-        // Set up audio event listeners
-        audio.addEventListener('timeupdate', updateSeekBar);
-        audio.addEventListener('ended', () => nextTrack());
-        
-        // Initialize first track
-        updateTrackInfo();
-      }
+audio.addEventListener('loadstart', function() {
+    console.log('Started loading audio from:', audio.src);
+});
+
+audio.addEventListener('canplay', function() {
+    console.log('Audio is ready to play');
+});
+      // Initialize player
+function initPlayer() {
+    // Create playlist items
+    const playlistContainer = document.getElementById('playlist');
+    playlist.forEach((song, index) => {
+        const item = document.createElement('div');
+        item.className = 'playlist-item';
+        item.textContent = `${song.title} - ${song.artist}`;
+        item.onclick = () => playTrack(index);
+        playlistContainer.appendChild(item);
+    });
+
+    // Set up audio event listeners
+    audio.addEventListener('timeupdate', updateSeekBar);
+    audio.addEventListener('ended', () => nextTrack());
+    
+    // Initialize first track immediately
+    updateTrackInfo();
+    // Preload the audio
+    audio.preload = 'auto';
+    // Try to load the audio
+    audio.load();
+}
 
       function updateTrackInfo() {
         const song = playlist[currentTrackIndex];
