@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="{{ meta.mainLanguage }}">
   <head>
     <title>{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</title>
@@ -10,189 +9,71 @@
     {% for imp in dynamics.index.head %}
       {% include imp %}
     {% endfor %}
-      <style>
-      /* Стили для верхнего меню */
-      .top-menu {
-        background-color: var(--background-primary);
-        border-bottom: 1px solid var(--background-modifier-border);
-        padding: 0 20px;
-        z-index: 100;
-      }
-      
-      .top-menu-container {
-        margin-left: 16px; /* небольшой отступ от края */
-        margin-right: auto;
-        display: flex;
-        align-items: center;
-        height: 40px;
-        /* ширина контейнера определяется содержимым */
-        width: fit-content;
-        min-width: 0;
-      }
-      
-      .top-menu-brand {
-        flex-shrink: 0;
-      }
-      
-      .brand-link {
-        color: var(--text-accent);
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 18px;
-        padding: 8px 16px;
-        border-radius: 4px;
-        transition: none;
-        white-space: nowrap;
-      }
-
-      .top-menu-nav {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 8px;
-        /* ширина определяется кнопками */
-        width: auto;
-        min-width: 0;
-      }
-      
-      .top-menu-item {
-        color: var(--text-normal);
-        text-decoration: none;
-        padding: 8px 16px;
-        border-radius: 4px;
-        transition: background-color 0.2s, color 0.2s;
-        font-weight: 500;
-        white-space: nowrap;
-        flex: 0 1 auto; /* подстраиваются под содержимое */
-      }
-      
-      .top-menu-item:hover {
-        background-color: var(--background-modifier-hover);
-        color: var(--text-accent);
-      }
-      
-      .top-menu-item.active {
-        background-color: var(--interactive-accent);
-        color: var(--text-on-accent);
-      }
-      /* Адаптивность для мобильных устройств */
-      @media (max-width: 768px) {
-        .top-menu-container {
-          margin-left: 8px;
-          height: auto;
-          padding: 10px 0;
-          width: 100%;
-        }
-        
-        .top-menu-nav {
-          gap: 10px;
-        }
-        
-        .top-menu-item {
-          padding: 6px 12px;
-          font-size: 14px;
-        }
-      }
-    </style>
-
-
   </head>
   <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
-
-    <!-- Верхнее меню с категориями -->
-    <nav class="top-menu">
-      <div class="top-menu-container">
-        <!-- Кнопка catative's bank слева -->
-        <div class="top-menu-brand">
-          <span class="brand-link">catative's bank</span>
-        </div>
-        
-        <div class="top-menu-nav">
-          <a href="/notes" class="top-menu-item">Notes</a>
-          <a href="/works" class="top-menu-item">Works</a>
-        </div>
-      </div>
-</nav>
-
-{%include "components/notegrowthhistory.njk"%}
-{% if settings.dgShowFileTree !== true %}
-  {%include "components/navbar.njk"%}
-{%else%}
-  {%include "components/filetree.njk"%}
-{% endif %}
-{% if settings.dgEnableSearch === true %}
-  {%include "components/searchContainer.njk"%}
-{% endif %}
-<main class="content cm-s-obsidian {{contentClasses}}">
-  <header>
-  {% if settings.dgShowInlineTitle === true %}
-    <h1>{{ noteTitle  }}</h1>
-  {% endif %}
-
-  <div class="header-meta">
-    {% if settings.dgShowTags === true and tags %}
-      <div class="header-tags">
-        {% for tag in tags %}
-          {% if tag != 'gardenEntry' and tag !='note' %}
-            <a class="tag" onclick="toggleTagSearch(this)">
-              #{{tag}}
-            </a>
-          {% endif %}
-        {% endfor %}
-      </div>
+    {%include "components/notegrowthhistory.njk"%}
+    {% if settings.dgShowFileTree !== true %}
+      {%include "components/navbar.njk"%}
+    {%else%}
+      {%include "components/filetree.njk"%}
     {% endif %}
-  </div>
-  {% for imp in dynamics.common.header %}
-    {% include imp %}
-  {% endfor %}
-  {% for imp in dynamics.index.header %}
-    {% include imp %}
-  {% endfor %}
-  </header>
-  {% for imp in dynamics.common.beforeContent %}
-    {% include imp %}
-  {% endfor %}
-  {% for imp in dynamics.index.beforeContent %}
-    {% include imp %}
-  {% endfor %}
-  {{ content | hideDataview | taggify | link | safe}}
-  {% for imp in dynamics.common.afterContent %}
-    {% include imp %}
-  {% endfor %}
-  {% for imp in dynamics.index.afterContent %}
-    {% include imp %}
-  {% endfor %}
-</main>
+    {% if settings.dgEnableSearch === true %}
+      {%include "components/searchContainer.njk"%}
+    {% endif %}
+    <main class="content cm-s-obsidian {{contentClasses}}">
+      <header>
+      {% if settings.dgShowInlineTitle === true %}
+        <h1>{{ noteTitle  }}</h1>
+      {% endif %}
 
-{% if settings.dgShowBacklinks === true or settings.dgShowLocalGraph === true or settings.dgShowToc === true%}
-  {%include "components/sidebar.njk" %}
-{%endif%}
+      <div class="header-meta">
+        {% if settings.dgShowTags === true and tags %}
+          <div class="header-tags">
+            {% for tag in tags %}
+              {% if tag != 'gardenEntry' and tag !='note' %}
+                <a class="tag" onclick="toggleTagSearch(this)">
+                  #{{tag}}
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      {% for imp in dynamics.common.header %}
+        {% include imp %}
+      {% endfor %}
+      {% for imp in dynamics.index.header %}
+        {% include imp %}
+      {% endfor %}
+      </header>
+      {% for imp in dynamics.common.beforeContent %}
+        {% include imp %}
+      {% endfor %}
+      {% for imp in dynamics.index.beforeContent %}
+        {% include imp %}
+      {% endfor %}
+      {{ content | hideDataview | taggify | link | safe}}
+      {% for imp in dynamics.common.afterContent %}
+        {% include imp %}
+      {% endfor %}
+      {% for imp in dynamics.index.afterContent %}
+        {% include imp %}
+      {% endfor %}
+    </main>
 
-{% if settings.dgLinkPreview === true %}
-  {%include "components/linkPreview.njk"%}
-{% endif %}
-{% for imp in dynamics.common.footer %}
-  {% include imp %}
-{% endfor %}
-{% for imp in dynamics.index.footer %}
-  {% include imp %}
-{% endfor %}
-{%include "components/lucideIcons.njk"%}
+    {% if settings.dgShowBacklinks === true or settings.dgShowLocalGraph === true or settings.dgShowToc === true%}
+      {%include "components/sidebar.njk" %}
+    {%endif%}
 
-<script>
-  // Скрипт для выделения активного пункта меню
-  document.addEventListener('DOMContentLoaded', function() {
-    const menuItems = document.querySelectorAll('.top-menu-item');
-    const currentPath = window.location.pathname;
-    
-    menuItems.forEach(item => {
-      if (item.getAttribute('href') === currentPath || 
-          (currentPath !== '/' && item.getAttribute('href') !== '/' && currentPath.startsWith(item.getAttribute('href')))) {
-        item.classList.add('active');
-      }
-    });
-  });
-</script>
-
-  </body>
-</html>
+    {% if settings.dgLinkPreview === true %}
+      {%include "components/linkPreview.njk"%}
+    {% endif %}
+    {% for imp in dynamics.common.footer %}
+      {% include imp %}
+    {% endfor %}
+    {% for imp in dynamics.index.footer %}
+      {% include imp %}
+    {% endfor %}
+    {%include "components/lucideIcons.njk"%}
+    </body>
+  </html>
