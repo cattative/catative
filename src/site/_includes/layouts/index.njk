@@ -27,11 +27,22 @@
         height: 40px;
       }
       
-      .top-menu-nav {
-        display: flex;
-        gap: 30px;
-        align-items: center;
-        flex-wrap: wrap;
+      .top-menu-brand {
+        flex-shrink: 0;
+      }
+      
+      .brand-link {
+        color: var(--text-accent);
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 18px;
+        padding: 8px 16px;
+        border-radius: 4px;
+        transition: background-color 0.2s;
+      }
+      
+      .brand-link:hover {
+        background-color: var(--background-modifier-hover);
       }
       
       .top-menu-item {
