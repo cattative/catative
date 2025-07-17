@@ -18,53 +18,40 @@
         padding: 0 20px;
         z-index: 100;
       }
-
-  .top-menu-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-  }
-
       
-      .brand-link {
-        color: var(--text-accent);
+      .top-menu-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        height: 60px;
+      }
+      
+      .top-menu-nav {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      
+      .top-menu-item {
+        color: var(--text-normal);
         text-decoration: none;
-        font-weight: bold;
-        font-size: 18px;
         padding: 8px 16px;
         border-radius: 4px;
-        transition: background-color 0.2s;
+        transition: background-color 0.2s, color 0.2s;
+        font-weight: 500;
       }
-
-  .top-menu-nav {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  
-  .top-menu-item {
-    color: var(--text-normal);
-    text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    transition: background-color 0.2s, color 0.2s;
-    font-weight: 500;
-  }
-  
-  .top-menu-item:hover {
-    background-color: var(--background-modifier-hover);
-    color: var(--text-accent);
-  }
-  
-  .top-menu-item.active {
-    background-color: var(--interactive-accent);
-    color: var(--text-on-accent);
-  }
-  
+      
+      .top-menu-item:hover {
+        background-color: var(--background-modifier-hover);
+        color: var(--text-accent);
+      }
+      
+      .top-menu-item.active {
+        background-color: var(--interactive-accent);
+        color: var(--text-on-accent);
+      }
   /* Адаптивность для мобильных устройств */
   @media (max-width: 768px) {
     .top-menu-container {
