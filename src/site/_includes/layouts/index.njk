@@ -14,19 +14,17 @@
       .top-menu {
         background-color: var(--background-primary);
         border-bottom: 1px solid var(--background-modifier-border);
-
         z-index: 100;
       }
       
       .top-menu-container {
-        margin-left: 16px; /* небольшой отступ от края */
-        margin-right: auto;
+        margin: 0 auto; /* Changed to auto margins on both sides */
         display: flex;
         align-items: center;
+        justify-content: center; /* Added to center content */
         height: 40px;
-        /* ширина контейнера определяется содержимым */
-        width: fit-content;
-        min-width: 0;
+        width: 100%; /* Changed to full width */
+        padding: 0 16px; /* Moved padding here */
       }
       
       .top-menu-brand {
@@ -48,8 +46,8 @@
         display: flex;
         flex-wrap: wrap;
         align-items: center;
+        justify-content: center; /* Added to center items */
         gap: 8px;
-        /* ширина определяется кнопками */
         width: auto;
         min-width: 0;
       }
@@ -62,7 +60,7 @@
         transition: background-color 0.2s, color 0.2s;
         font-weight: 500;
         white-space: nowrap;
-        flex: 0 1 auto; /* подстраиваются под содержимое */
+        flex: 0 1 auto;
       }
       
       .top-menu-item:hover {
@@ -77,10 +75,10 @@
       /* Адаптивность для мобильных устройств */
       @media (max-width: 768px) {
         .top-menu-container {
-          margin-left: 8px;
           height: auto;
-          padding: 10px 0;
-          width: 100%;
+          padding: 10px 16px;
+          flex-direction: column; /* Stack items vertically on mobile */
+          gap: 10px;
         }
         
         .top-menu-nav {
