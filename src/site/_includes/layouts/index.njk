@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="{{ meta.mainLanguage }}">
   <head>
     <title>{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</title>
@@ -9,71 +10,168 @@
     {% for imp in dynamics.index.head %}
       {% include imp %}
     {% endfor %}
+    <style>
+      /* Стили для верхнего меню */
+      .top-menu {
+        background-color: var(--background-primary);
+        border-bottom: 1px solid var(--background-modifier-border);
+        padding: 0 20px;
+        z-index: 100;
+      }
+
+```
+  .top-menu-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .top-menu-nav {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .top-menu-item {
+    color: var(--text-normal);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+    font-weight: 500;
+  }
+  
+  .top-menu-item:hover {
+    background-color: var(--background-modifier-hover);
+    color: var(--text-accent);
+  }
+  
+  .top-menu-item.active {
+    background-color: var(--interactive-accent);
+    color: var(--text-on-accent);
+  }
+  
+  /* Адаптивность для мобильных устройств */
+  @media (max-width: 768px) {
+    .top-menu-container {
+      height: auto;
+      padding: 10px 0;
+    }
+    
+    .top-menu-nav {
+      gap: 15px;
+    }
+    
+    .top-menu-item {
+      padding: 6px 12px;
+      font-size: 14px;
+    }
+  }
+</style>
+```
+
   </head>
   <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
-    {%include "components/notegrowthhistory.njk"%}
-    {% if settings.dgShowFileTree !== true %}
-      {%include "components/navbar.njk"%}
-    {%else%}
-      {%include "components/filetree.njk"%}
-    {% endif %}
-    {% if settings.dgEnableSearch === true %}
-      {%include "components/searchContainer.njk"%}
-    {% endif %}
-    <main class="content cm-s-obsidian {{contentClasses}}">
-      <header>
-      {% if settings.dgShowInlineTitle === true %}
-        <h1>{{ noteTitle  }}</h1>
-      {% endif %}
 
-      <div class="header-meta">
-        {% if settings.dgShowTags === true and tags %}
-          <div class="header-tags">
-            {% for tag in tags %}
-              {% if tag != 'gardenEntry' and tag !='note' %}
-                <a class="tag" onclick="toggleTagSearch(this)">
-                  #{{tag}}
-                </a>
-              {% endif %}
-            {% endfor %}
-          </div>
-        {% endif %}
+```
+<!-- Верхнее меню с категориями -->
+<nav class="top-menu">
+  <div class="top-menu-container">
+    <div class="top-menu-nav">
+      <a href="/" class="top-menu-item">Главная</a>
+      <a href="/notes" class="top-menu-item">Заметки</a>
+      <a href="/projects" class="top-menu-item">Проекты</a>
+      <a href="/articles" class="top-menu-item">Статьи</a>
+      <a href="/thoughts" class="top-menu-item">Размышления</a>
+      <a href="/resources" class="top-menu-item">Ресурсы</a>
+      <a href="/about" class="top-menu-item">О сайте</a>
+    </div>
+  </div>
+</nav>
+
+{%include "components/notegrowthhistory.njk"%}
+{% if settings.dgShowFileTree !== true %}
+  {%include "components/navbar.njk"%}
+{%else%}
+  {%include "components/filetree.njk"%}
+{% endif %}
+{% if settings.dgEnableSearch === true %}
+  {%include "components/searchContainer.njk"%}
+{% endif %}
+<main class="content cm-s-obsidian {{contentClasses}}">
+  <header>
+  {% if settings.dgShowInlineTitle === true %}
+    <h1>{{ noteTitle  }}</h1>
+  {% endif %}
+
+  <div class="header-meta">
+    {% if settings.dgShowTags === true and tags %}
+      <div class="header-tags">
+        {% for tag in tags %}
+          {% if tag != 'gardenEntry' and tag !='note' %}
+            <a class="tag" onclick="toggleTagSearch(this)">
+              #{{tag}}
+            </a>
+          {% endif %}
+        {% endfor %}
       </div>
-      {% for imp in dynamics.common.header %}
-        {% include imp %}
-      {% endfor %}
-      {% for imp in dynamics.index.header %}
-        {% include imp %}
-      {% endfor %}
-      </header>
-      {% for imp in dynamics.common.beforeContent %}
-        {% include imp %}
-      {% endfor %}
-      {% for imp in dynamics.index.beforeContent %}
-        {% include imp %}
-      {% endfor %}
-      {{ content | hideDataview | taggify | link | safe}}
-      {% for imp in dynamics.common.afterContent %}
-        {% include imp %}
-      {% endfor %}
-      {% for imp in dynamics.index.afterContent %}
-        {% include imp %}
-      {% endfor %}
-    </main>
-
-    {% if settings.dgShowBacklinks === true or settings.dgShowLocalGraph === true or settings.dgShowToc === true%}
-      {%include "components/sidebar.njk" %}
-    {%endif%}
-
-    {% if settings.dgLinkPreview === true %}
-      {%include "components/linkPreview.njk"%}
     {% endif %}
-    {% for imp in dynamics.common.footer %}
-      {% include imp %}
-    {% endfor %}
-    {% for imp in dynamics.index.footer %}
-      {% include imp %}
-    {% endfor %}
-    {%include "components/lucideIcons.njk"%}
-    </body>
-  </html>
+  </div>
+  {% for imp in dynamics.common.header %}
+    {% include imp %}
+  {% endfor %}
+  {% for imp in dynamics.index.header %}
+    {% include imp %}
+  {% endfor %}
+  </header>
+  {% for imp in dynamics.common.beforeContent %}
+    {% include imp %}
+  {% endfor %}
+  {% for imp in dynamics.index.beforeContent %}
+    {% include imp %}
+  {% endfor %}
+  {{ content | hideDataview | taggify | link | safe}}
+  {% for imp in dynamics.common.afterContent %}
+    {% include imp %}
+  {% endfor %}
+  {% for imp in dynamics.index.afterContent %}
+    {% include imp %}
+  {% endfor %}
+</main>
+
+{% if settings.dgShowBacklinks === true or settings.dgShowLocalGraph === true or settings.dgShowToc === true%}
+  {%include "components/sidebar.njk" %}
+{%endif%}
+
+{% if settings.dgLinkPreview === true %}
+  {%include "components/linkPreview.njk"%}
+{% endif %}
+{% for imp in dynamics.common.footer %}
+  {% include imp %}
+{% endfor %}
+{% for imp in dynamics.index.footer %}
+  {% include imp %}
+{% endfor %}
+{%include "components/lucideIcons.njk"%}
+
+<script>
+  // Скрипт для выделения активного пункта меню
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuItems = document.querySelectorAll('.top-menu-item');
+    const currentPath = window.location.pathname;
+    
+    menuItems.forEach(item => {
+      if (item.getAttribute('href') === currentPath || 
+          (currentPath !== '/' && item.getAttribute('href') !== '/' && currentPath.startsWith(item.getAttribute('href')))) {
+        item.classList.add('active');
+      }
+    });
+  });
+</script>
+```
+
+  </body>
+</html>
