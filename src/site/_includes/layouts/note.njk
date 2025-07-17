@@ -1,6 +1,7 @@
 ---
 permalink: "notes/{{ page.fileSlug | slugify }}/"
----<!DOCTYPE html>
+---
+<!DOCTYPE html>
 <html lang="{{ meta.mainLanguage }}">
   <head>
     <title>{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</title>
@@ -8,147 +9,23 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
     {% for imp in dynamics.common.head %}
       {% include imp %}
     {% endfor %}
-    {% for imp in dynamics.index.head %}
+    {% for imp in dynamics.notes.head %}
       {% include imp %}
     {% endfor %}
-    <style>
-      /* Стили для верхнего меню */
-      .top-menu {
-        background-color: var(--background-primary);
-        border-bottom: 1px solid var(--background-modifier-border);
-        padding: 0 20px;
-        z-index: 100;
-      }
-      
-      .top-menu-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        height: 60px;
-      }
-      .top-menu-brand {
-        flex-shrink: 0;
-      }
-      
-      .brand-link {
-        color: var(--text-accent);
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 18px;
-        padding: 8px 16px;
-        border-radius: 4px;
-        transition: background-color 0.2s;
-      }
-      
-      .brand-link:hover {
-        background-color: var(--background-modifier-hover);
-      }
-      
-      .top-menu-nav {
-        display: flex;
-        gap: 30px;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-      
-      .top-menu-item {
-        color: var(--text-normal);
-        text-decoration: none;
-        padding: 8px 16px;
-        border-radius: 4px;
-        transition: background-color 0.2s, color 0.2s;
-        font-weight: 500;
-      }
-      
-      .top-menu-item:hover {
-        background-color: var(--background-modifier-hover);
-        color: var(--text-accent);
-      }
-      
-      .top-menu-item.active {
-        background-color: var(--interactive-accent);
-        color: var(--text-on-accent);
-      }
-      /* Стили для кнопки "назад" */
-      .back-button {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background-color: var(--interactive-accent);
-        color: var(--text-on-accent);
-        border: none;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        font-size: 20px;
-        cursor: pointer;
-        transition: transform 0.2s, box-shadow 0.2s;
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-      }
-      
-      .back-button:hover {
-        transform: scale(1.1);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-      }
-      
-      .back-button:active {
-        transform: scale(0.95);
-      }
-      
-      /* Адаптивность для мобильных устройств */
-      @media (max-width: 768px) {
-        .top-menu-container {
-          height: auto;
-          padding: 10px 0;
-        }
-        
-        .top-menu-nav {
-          gap: 15px;
-        }
-        
-        .top-menu-item {
-          padding: 6px 12px;
-          font-size: 14px;
-        }
-      }
-    </style>
   </head>
   <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
     {%include "components/notegrowthhistory.njk"%}
     
-    <!-- Верхнее меню с категориями -->
-    <nav class="top-menu">
-      <div class="top-menu-container">
-        <!-- Кнопка catative's bank слева -->
-        <div class="top-menu-brand">
-          <a href="/" class="brand-link">catative's bank</a>
-        </div>
-        
-        <div class="top-menu-nav">
-          <a href="/{{ 'Главная' | slugify }}" class="top-menu-item">Главная</a>
-          <a href="/{{ 'Заметки' | slugify }}" class="top-menu-item">Заметки</a>
-          <a href="/{{ 'Проекты' | slugify }}" class="top-menu-item">Проекты</a>
-          <a href="/{{ 'Статьи' | slugify }}" class="top-menu-item">Статьи</a>
-          <a href="/{{ 'Размышления' | slugify }}" class="top-menu-item">Размышления</a>
-          <a href="/{{ 'Ресурсы' | slugify }}" class="top-menu-item">Ресурсы</a>
-          <a href="/{{ 'О сайте' | slugify }}" class="top-menu-item">О сайте</a>
-        </div>
-      </div>
-    </nav>
-    {%include "components/notegrowthhistory.njk"%}
     {% if settings.dgShowFileTree !== true %}
       {%include "components/navbar.njk"%}
     {%else%}
       {%include "components/filetree.njk"%}
     {% endif %}
+
     {% if settings.dgEnableSearch === true %}
       {%include "components/searchContainer.njk"%}
     {% endif %}
+
     <main class="content cm-s-obsidian {{contentClasses}}">
       <header>
         {% if settings.dgShowInlineTitle === true %}
@@ -215,33 +92,5 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
       {% include imp %}
     {% endfor %}
     {%include "components/lucideIcons.njk"%}
-<!-- Кнопка "назад" -->
-    <button class="back-button" onclick="goBack()" title="Вернуться на предыдущую страницу">
-      ←
-    </button>
-    
-    <script>
-      // Скрипт для выделения активного пункта меню
-      document.addEventListener('DOMContentLoaded', function() {
-        const menuItems = document.querySelectorAll('.top-menu-item');
-        const currentPath = window.location.pathname;
-        
-        menuItems.forEach(item => {
-          if (item.getAttribute('href') === currentPath || 
-              (currentPath !== '/' && item.getAttribute('href') !== '/' && currentPath.startsWith(item.getAttribute('href')))) {
-            item.classList.add('active');
-          }
-        });
-      });
-      
-      // Функция для возвращения на предыдущую страницу
-      function goBack() {
-        if (window.history.length > 1) {
-          window.history.back();
-        } else {
-          window.location.href = '/';
-        }
-      }
-    </script>
   </body>
 </html>
