@@ -9,22 +9,23 @@
     {% for imp in dynamics.index.head %}
       {% include imp %}
     {% endfor %}
-     <style>
-      /* Стили для верхнего меню */
-      .top-menu {
+   .top-menu {
         background-color: var(--background-primary);
         border-bottom: 1px solid var(--background-modifier-border);
+        padding: 0 20px;
         z-index: 100;
       }
       
       .top-menu-container {
-        margin: 0 auto; /* Changed to auto margins on both sides */
+        margin-left: 16px; /* небольшой отступ от края */
+        margin-right: auto;
+        margin-bottom: 6px;
         display: flex;
         align-items: center;
-        justify-content: center; /* Added to center content */
         height: 40px;
-        width: 100%; /* Changed to full width */
-        padding: 0 16px; /* Moved padding here */
+        /* ширина контейнера определяется содержимым */
+        width: fit-content;
+        min-width: 0;
       }
       
       .top-menu-brand {
@@ -46,8 +47,8 @@
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: center; /* Added to center items */
         gap: 8px;
+        /* ширина определяется кнопками */
         width: auto;
         min-width: 0;
       }
@@ -60,7 +61,7 @@
         transition: background-color 0.2s, color 0.2s;
         font-weight: 500;
         white-space: nowrap;
-        flex: 0 1 auto;
+        flex: 0 1 auto; /* подстраиваются под содержимое */
       }
       
       .top-menu-item:hover {
@@ -75,10 +76,10 @@
       /* Адаптивность для мобильных устройств */
       @media (max-width: 768px) {
         .top-menu-container {
+          margin-left: 8px;
           height: auto;
-          padding: 10px 16px;
-          flex-direction: column; /* Stack items vertically on mobile */
-          gap: 10px;
+          padding: 10px 0;
+          width: 100%;
         }
         
         .top-menu-nav {
