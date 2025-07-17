@@ -141,7 +141,22 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
   </head>
   <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
     {%include "components/notegrowthhistory.njk"%}
-    
+  
+    <!-- Верхнее меню с категориями -->
+    <nav class="top-menu">
+      <div class="top-menu-container">
+        <!-- Кнопка catative's bank слева -->
+        <div class="top-menu-brand">
+          <a href="/" class="brand-link">catative's bank</span>
+        </div>
+        
+        <div class="top-menu-nav">
+          <a href="/notes" class="top-menu-item">Notes</a>
+          <a href="/works" class="top-menu-item">Works</a>
+        </div>
+      </div>
+</nav>
+
     {% if settings.dgShowFileTree !== true %}
       {%include "components/navbar.njk"%}
     {%else%}
