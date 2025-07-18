@@ -2,8 +2,11 @@
 {"dg-publish":true,"permalink":"/notes/"}
 ---
 
+[[Vibe coding\|Vibe coding]] 
 
-Just a bunch of stuff I wish I could’ve shown my younger self.
+
+
+**Preferences which I want to share.**
 
 [[NTS Radio\|NTS Radio]]
 
