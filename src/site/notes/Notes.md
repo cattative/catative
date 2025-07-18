@@ -2,6 +2,8 @@
 {"dg-publish":true,"permalink":"/notes/"}
 ---
 
+<h3>My Thoughts:</h3>
+
 [[Vibe coding\|Vibe coding]] 
 
 
