@@ -6,7 +6,7 @@
 
 
 
-**Preferences which I want to share.**
+<h3>favourite internet findings which I want to share:</h3>
 
 [[NTS Radio\|NTS Radio]]
 
