@@ -10,9 +10,10 @@ body {
     //  h1 {
     //   color: black;
     //  }
-    img {
-    max-width: 100%;
-    height: auto;
+.dg-content img {
+    max-width: 100% !important;
+    height: auto !important;
+    width: 100%;
     object-fit: contain;
 }
     @media (max-width: 600px) {
