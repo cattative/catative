@@ -6,4 +6,4 @@ I vibe coded this site, almost fully, and I don‘t see any problem about it. As
 
 I did some lessons on freecodecamp.org before, wrote this site about kittens. But it‘s not like my passion. Maybe that is because I lost that moment in school where math can be friendly. I also did pretty simple site on neocities.org, but i felt that my views of Internet was not part of „coziness“ of the place. In total, i guess i spent about two weeks to have this level of knowledge, so i tiny bit understand some stuff but not fully, for now i m ok with what i have.
 
-[[Notes\|Back to Notes]]
+[[Thoughts\|Back to Thoughts]]

@@ -2,17 +2,8 @@
 {"dg-publish":true,"permalink":"/notes/"}
 ---
 
-<h3>My Thoughts:</h3>
-
-[[Vibe coding\|Vibe coding]] 
+**[[Thoughts\|My Thoughts]]** — folder for just my personal views, usually in plain text.
 
 
-
-<h3>favourite internet findings which I want to share:</h3>
-
-[[NTS Radio\|NTS Radio]]
-
-[[Hiking\|Hiking]]
-
-[[Фільми Довженка\|Фільми Довженка]] 
+[[Findings\|My Findings]] — more as a folder with content from internet which I want to memorise and save.
 
