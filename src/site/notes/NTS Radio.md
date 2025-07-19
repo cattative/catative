@@ -10,4 +10,4 @@ For me - NTS became something where i can particularly listen other people choic
 
 I found this App when I was thinking that I have unique Idea which I could offer to Hör. Idea was that: 1) It‘s really easy to do AI DJ with endless hours of smooth transition from track to track; 2)They should have an App where you can discover more of what you like, where DJ‘s would have possibility to share their findings weekly or monthly, and other sweets like that.
 
-[[Notes\|Back to Notes]]
+[[Findings\|Back to Findings]]
