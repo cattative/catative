@@ -3,9 +3,9 @@
 ---
 
 
-[[Vibe coding\|Vibe coding]] 
+[[vibe coding\|vibe coding]] 
 
-[[Hiking\|Hiking]]
+[[hiking\|hiking]]
 
 
 **[[Notes\|Back to Notes]]**
