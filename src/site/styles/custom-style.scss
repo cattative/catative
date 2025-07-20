@@ -3,7 +3,13 @@ body {
       ADD YOUR CUSTOM STYLING HERE. (INSIDE THE body {...} section.)
       IT WILL TAKE PRECEDENCE OVER THE STYLING IN THE STYLE.CSS FILE.
    ***/
-    //  background-color: white;
+    :root {
+    --background-primary: #080608 !imortant;
+    //--background-primary: rgb(32,31,31);
+    //--background-secondary: #080608 !important;
+    //--background-secondary: rgb(57, 56, 56);
+}
+
     //  .content {
     //   font-size: 14px;
     //  }
