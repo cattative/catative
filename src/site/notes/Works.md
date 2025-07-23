@@ -5,7 +5,7 @@
 Here is stuff which i‘ve done:
 <h3>Here is a design of sweater with 3 letters which stands for Orthodoxal Church of Ukraine.</h3>
 Not yet done, because i want it to be good quality, and for now i don‘t have money for that.
-![IMG_0760.png](/img/user/IMG_0760.png)
+![IMG_0839.jpeg](/img/user/IMG_0839.jpeg)
 .
 .
 .
