@@ -17,11 +17,10 @@ body {
       //  height: auto;
     //}
    //}
-// Стили для автоматической группировки двух последовательных изображений
-// Общий контейнер (без принудительного центрирования текста)
+// Общий контейнер
 .content {
   max-width: 1200px;
-  margin: 0 auto; // Центрирование контейнера по горизонтали
+  margin: 0 auto; // Центрирование контейнера
 }
 
 // Стили для изображений
@@ -32,46 +31,66 @@ img {
   border-radius: 8px; // Скругленные углы
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // Легкая тень
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: block; // Изображения по умолчанию блочные
+  display: block; // По умолчанию блочный элемент
   margin: 10px 0; // Отступы для одиночных изображений
 
   &:hover {
     transform: scale(1.02); // Увеличение при наведении
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
+}
 
-  // Для десктопов: группировка двух последовательных img
-  @media (min-width: 768px) {
-    // Проверяем, что следующий элемент — img
-    &:where(:not(:has(+ *:not(img)))) {
-      // Оборачиваем пару в виртуальный контейнер
-      &,
-      & + img {
-        display: inline-block;
-        width: calc(50% - 10px); // Две картинки в ряд с учетом отступа
-        margin: 10px 5px; // Отступы между картинками
-        vertical-align: top; // Выравнивание по верхнему краю
-      }
-
-      // Центрирование пары изображений
-      &:first-of-type {
-        margin-left: calc(50% - (600px - 10px) / 2); // Центрируем относительно max-width
-      }
-      & + img:last-of-type {
-        margin-right: calc(50% - (600px - 10px) / 2);
-      }
-    }
+// Для десктопов: группировка двух последовательных img
+@media (min-width: 768px) {
+  // Случай 1: img идут подряд без обертки в <p>
+  img + img {
+    display: inline-block;
+    width: calc(50% - 10px); // Две картинки в ряд
+    margin: 10px 5px;
+    vertical-align: top;
+  }
+  img:not(:has(+ *:not(img))) {
+    display: inline-block;
+    width: calc(50% - 10px);
+    margin: 10px 5px;
+    vertical-align: top;
   }
 
-  // Для мобильных: каждое изображение на всю ширину
-  @media (max-width: 767px) {
+  // Случай 2: img обернуты в <p> (часто в Jekyll/Obsidian)
+  p img:only-child {
+    & + p img:only-child {
+      display: inline-block;
+      width: calc(50% - 10px);
+      margin: 10px 5px;
+      vertical-align: top;
+    }
+    display: inline-block;
+    width: calc(50% - 10px);
+    margin: 10px 5px;
+    vertical-align: top;
+  }
+
+  // Центрирование пары изображений
+  img:first-of-type:not(:has(+ *:not(img))),
+  p img:first-of-type + p img:last-of-type {
+    margin-left: calc(50% - (600px - 10px) / 2); // Центрируем относительно max-width
+  }
+  img + img:last-of-type,
+  p img:only-child + p img:last-of-type {
+    margin-right: calc(50% - (600px - 10px) / 2);
+  }
+}
+
+// Для мобильных: каждое изображение на всю ширину
+@media (max-width: 767px) {
+  img, p img {
     width: 100%;
     margin: 10px 0;
   }
 }
 
-// Убедимся, что текст не центрируется
-p, div, span {
-  text-align: left; // Возвращаем текст к выравниванию по левому краю
+// Убираем центрирование текста
+body, .content, p, h1, h2, h3, h4, h5, h6, div, span {
+  text-align: left !important; // Явное выравнивание по левому краю
 }
 }    
