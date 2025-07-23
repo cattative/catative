@@ -17,11 +17,6 @@ body {
       //  height: auto;
     //}
    //}
-// Общий контейнер
-.content {
-  max-width: 1200px;
-  margin: 0 auto; // Центрирование контейнера
-}
 
 // Стили для изображений
 img {
@@ -33,11 +28,6 @@ img {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: block; // По умолчанию блочный элемент
   margin: 10px 0; // Отступы для одиночных изображений
-
-  &:hover {
-    transform: scale(1.02); // Увеличение при наведении
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
 }
 
 // Для десктопов: группировка двух последовательных img
@@ -87,10 +77,5 @@ img {
     width: 100%;
     margin: 10px 0;
   }
-}
-
-// Убираем центрирование текста
-body, .content, p, h1, h2, h3, h4, h5, h6, div, span {
-  text-align: left !important; // Явное выравнивание по левому краю
 }
 }    
