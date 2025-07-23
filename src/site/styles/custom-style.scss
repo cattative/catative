@@ -17,19 +17,64 @@ body {
       //  height: auto;
     //}
    //}
-    .two-photos {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  justify-content: center;
+// Стили для автоматической группировки двух последовательных изображений
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // Легкая тень
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  // Если два img идут подряд (без текста или других элементов)
+  & + img {
+    margin-top: 20px; // Отступ для одиночных изображений на мобильных
+  }
+
+  // Для десктопов: группируем два последовательных img в ряд
+  @media (min-width: 768px) {
+    // Стили для первого изображения из пары
+    &:not(:has(+ *:not(img))) {
+      // Проверяем, что следующий элемент — img
+      & + img {
+        margin-top: 0; // Убираем вертикальный отступ
+        display: inline-block; // Для расположения в ряд
+        vertical-align: middle; // Выравнивание по вертикали
+      }
+
+      // Контейнер для двух изображений
+      &,
+      & + img {
+        display: inline-block;
+        width: calc(50% - 10px); // Две фотки в ряд с учетом отступа
+        margin: 0 5px; // Отступы между фото
+      }
+
+      // Центрирование всей группы
+      &:where(:first-child) {
+        margin-left: auto;
+      }
+      & + img:where(:last-child) {
+        margin-right: auto;
+      }
+    }
+  }
+
+  // Для мобильных: изображения на всю ширину
+  @media (max-width: 767px) {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+// Общий контейнер для изображений (опционально, если есть общий блок)
+.content {
   max-width: 1200px;
   margin: 0 auto;
-  
-  img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 8px;
-  }
+  text-align: center; // Центрирование изображений
 }
 }    
