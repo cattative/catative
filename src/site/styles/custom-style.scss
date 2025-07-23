@@ -18,12 +18,13 @@ body {
     //}
    //}
 // Стили для автоматической группировки двух последовательных изображений
+// Общий контейнер (без принудительного центрирования текста)
 .content {
   max-width: 1200px;
-  margin: 0 auto;
-  text-align: center; // Центрирование содержимого
+  margin: 0 auto; // Центрирование контейнера по горизонтали
 }
 
+// Стили для изображений
 img {
   max-width: 100%;
   height: auto;
@@ -31,37 +32,33 @@ img {
   border-radius: 8px; // Скругленные углы
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // Легкая тень
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: 10px 0; // Отступ для одиночных изображений
+  display: block; // Изображения по умолчанию блочные
+  margin: 10px 0; // Отступы для одиночных изображений
 
   &:hover {
     transform: scale(1.02); // Увеличение при наведении
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 
-  // Для десктопов: группируем два последовательных img
+  // Для десктопов: группировка двух последовательных img
   @media (min-width: 768px) {
     // Проверяем, что следующий элемент — img
     &:where(:not(:has(+ *:not(img)))) {
-      & + img {
-        margin-top: 0; // Убираем вертикальный отступ
-        display: inline-block; // Расположение в ряд
-        vertical-align: top; // Выравнивание по верхнему краю
-      }
-
-      // Стили для пары изображений
+      // Оборачиваем пару в виртуальный контейнер
       &,
       & + img {
         display: inline-block;
         width: calc(50% - 10px); // Две картинки в ряд с учетом отступа
         margin: 10px 5px; // Отступы между картинками
+        vertical-align: top; // Выравнивание по верхнему краю
       }
 
-      // Центрирование пары
-      &:first-child {
-        margin-left: auto;
+      // Центрирование пары изображений
+      &:first-of-type {
+        margin-left: calc(50% - (600px - 10px) / 2); // Центрируем относительно max-width
       }
-      & + img:last-child {
-        margin-right: auto;
+      & + img:last-of-type {
+        margin-right: calc(50% - (600px - 10px) / 2);
       }
     }
   }
@@ -71,5 +68,10 @@ img {
     width: 100%;
     margin: 10px 0;
   }
+}
+
+// Убедимся, что текст не центрируется
+p, div, span {
+  text-align: left; // Возвращаем текст к выравниванию по левому краю
 }
 }    
