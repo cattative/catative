@@ -17,18 +17,6 @@ body {
       //  height: auto;
     //}
    //}
-// Стили для автоматической группировки двух последовательных изображений
-img {
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // Легкая тень
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  &:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
 
   // Если два img идут подряд (без текста или других элементов)
   & + img {
